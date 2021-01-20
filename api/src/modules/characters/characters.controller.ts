@@ -3,6 +3,7 @@ import { api } from "../../blizzapi";
 import axios, { AxiosResponse } from "axios";
 import { Keystone } from "../keystones/keystones.controller";
 import { CharacterServices } from "./characters.services";
+import { serverURL } from "../../URL";
 
 interface Character {
     id: number;
@@ -60,9 +61,7 @@ export class CharactersController {
         let charactersResponse: AxiosResponse<any> | undefined;
 
         try {
-            charactersResponse = await axios.get(
-                "http://localhost:3000/api/characters"
-            );
+            charactersResponse = await axios.get(serverURL + "/api/characters");
         } catch (e) {
             console.log(e);
         }
@@ -76,7 +75,8 @@ export class CharactersController {
         characters.forEach((character) => {
             axios
                 .get(
-                    "http://localhost:3000/api/keystones/" +
+                    serverURL +
+                        "/api/keystones/" +
                         character.realmSlug +
                         "/" +
                         character.name.toLowerCase()
@@ -98,7 +98,7 @@ export class CharactersController {
     public async getFinalData(req: Request, res: Response) {
         const characterServices = new CharacterServices();
         const charactersKeystonesResponse = await axios.get(
-            "http://localhost:3000/api/characters/keystones"
+            serverURL + "/api/characters/keystones"
         );
 
         const charactersKeystones: CharacterKeystone[] =

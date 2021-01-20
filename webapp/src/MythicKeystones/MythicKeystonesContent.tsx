@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../rootReducer";
+import { serverURL } from "../URL";
 import MythicKeystonesContentLine from "./MythicKeystonesContentLine";
 import { addAll, setHasFetch } from "./mythicKeystonesSlice";
 
@@ -14,7 +15,7 @@ const MythicKeystonesContent: React.FC = () => {
     useEffect(() => {
         if (!hasFetch) {
             axios
-                .get("http://localhost:3000/api/characters/data")
+                .get(serverURL + "/api/characters/data")
                 .then((response) => {
                     dispatch(addAll(response.data));
                     console.log(response.data);
