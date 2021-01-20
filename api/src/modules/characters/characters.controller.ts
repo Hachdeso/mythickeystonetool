@@ -14,7 +14,7 @@ interface CharacterKeystone {
     keystones: Keystone[];
 }
 
-interface CharacterData {
+export interface CharacterData {
     name: string;
     keystones: Keystone[];
     chessOne: number;
@@ -83,6 +83,7 @@ export class CharactersController {
     }
 
     public async getFinalData(req: Request, res: Response) {
+        const characterServices = new CharacterServices();
         const charactersKeystonesResponse = await axios.get(
             "http://localhost:3000/api/characters/keystones"
         );
@@ -95,7 +96,6 @@ export class CharactersController {
         const toReturn: CharacterData[] = [];
 
         charactersKeystones.forEach((characterKeystones) => {
-            const characterServices = new CharacterServices();
             const orderedKeystones = characterServices.orderKeystones(
                 characterKeystones.keystones
             );
@@ -108,6 +108,6 @@ export class CharactersController {
             });
         });
 
-        res.status(200).json(toReturn);
+        res.status(200).json(characterServices.orderCharactersData(toReturn));
     }
 }

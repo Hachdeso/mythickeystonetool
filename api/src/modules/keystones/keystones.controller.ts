@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Request, Response } from "express";
 import { api } from "../../blizzapi";
+import { KeystonesServices } from "./keystones.services";
 
 export interface Keystone {
     level: number;
@@ -9,6 +10,7 @@ export interface Keystone {
 
 export class KeystonesController {
     async get(req: Request, res: Response) {
+        const keystonesServices = new KeystonesServices();
         const token = await api.getAccessToken();
         var blizzardResponse: AxiosResponse<any> | undefined;
 
@@ -37,10 +39,14 @@ export class KeystonesController {
         const keystones: any[] = [];
 
         blizzardRuns.forEach((blizzardRun) => {
-            keystones.push({
-                level: blizzardRun.keystone_level,
-                timed: blizzardRun.is_completed_within_time,
-            });
+            const timestamp = blizzardRun.completed_timestamp;
+
+            if (keystonesServices.isInCurrentPeriod(timestamp)) {
+                keystones.push({
+                    level: blizzardRun.keystone_level,
+                    timed: blizzardRun.is_completed_within_time,
+                });
+            }
         });
 
         res.status(200).json(keystones);

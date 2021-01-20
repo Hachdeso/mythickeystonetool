@@ -1,5 +1,25 @@
 .mythickeystonescontentline {
     display: grid;
-    grid-template-columns: 500px 100px 100px 100px;
+    grid-template-columns: 300px 1fr 1fr 1fr;
     padding: 8px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    &:first-child {
+        border-top: 1px solid black;
+    }
+
+    span {
+        text-align: center;
+    }
+
+    &-title {
+        font-weight: bold;
+    }
+}
+
+.mythickeystonescontent {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }

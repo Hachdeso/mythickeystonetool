@@ -1,6 +1,36 @@
 import { Keystone } from "../keystones/keystones.controller";
+import { CharacterData, CharactersController } from "./characters.controller";
 
 export class CharacterServices {
+    public orderCharactersData(
+        charactersData: CharacterData[]
+    ): CharacterData[] {
+        function compare(a: CharacterData, b: CharacterData) {
+            let comparison = 0;
+            if (a.chessOne < b.chessOne) {
+                comparison = 1;
+            } else if (a.chessOne > b.chessOne) {
+                comparison = -1;
+            } else {
+                if (a.chessTwo < b.chessTwo) {
+                    comparison = 1;
+                } else if (a.chessTwo > b.chessTwo) {
+                    comparison = -1;
+                } else {
+                    if (a.chessThree < b.chessThree) {
+                        comparison = 1;
+                    } else if (a.chessThree > b.chessThree) {
+                        comparison = -1;
+                    }
+                }
+            }
+
+            return comparison;
+        }
+        console.log(charactersData.sort(compare));
+        return charactersData.sort(compare);
+    }
+
     public orderKeystones(keystones: Keystone[]): Keystone[] {
         function compare(a: Keystone, b: Keystone) {
             let comparison = 0;

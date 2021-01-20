@@ -30,6 +30,12 @@ const MythicKeystonesContent: React.FC = () => {
 
     return (
         <div className="mythickeystonescontent">
+            <div className="mythickeystonescontentline mythickeystonescontentline-title">
+                <span className="name">Pseudo</span>
+                <span>Coffre 1</span>
+                <span>Coffre 2</span>
+                <span>Coffre 3</span>
+            </div>
             {charactersData.map((characterData) => (
                 <MythicKeystonesContentLine
                     name={characterData.name}
