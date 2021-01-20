@@ -2,6 +2,11 @@ import axios, { AxiosResponse } from "axios";
 import { Request, Response } from "express";
 import { api } from "../../blizzapi";
 
+export interface Keystone {
+    level: number;
+    timed: boolean;
+}
+
 export class KeystonesController {
     async get(req: Request, res: Response) {
         const token = await api.getAccessToken();

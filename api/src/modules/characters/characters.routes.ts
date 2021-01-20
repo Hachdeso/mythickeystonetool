@@ -17,6 +17,7 @@ class CharactersRoute {
             "/keystones",
             this.charactersController.getWithKeystones
         );
+        this.router.get("/data", this.charactersController.getFinalData);
     }
 }
 
