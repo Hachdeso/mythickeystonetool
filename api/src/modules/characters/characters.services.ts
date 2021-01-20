@@ -62,4 +62,47 @@ export class CharacterServices {
         if (keystones.length < 10) return 0;
         return keystones[9].level;
     }
+
+    public getClassNameById(id: number): string {
+        switch (id) {
+            case 1:
+                return "warrior";
+
+            case 2:
+                return "paladin";
+
+            case 3:
+                return "hunter";
+
+            case 4:
+                return "rogue";
+
+            case 5:
+                return "priest";
+
+            case 6:
+                return "deathKnight";
+
+            case 7:
+                return "shaman";
+
+            case 8:
+                return "mage";
+
+            case 9:
+                return "warlock";
+
+            case 10:
+                return "monk";
+
+            case 11:
+                return "druid";
+
+            case 12:
+                return "demonHunter";
+
+            default:
+                return "undefined";
+        }
+    }
 }

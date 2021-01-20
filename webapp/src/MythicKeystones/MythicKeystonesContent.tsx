@@ -38,7 +38,9 @@ const MythicKeystonesContent: React.FC = () => {
             </div>
             {charactersData.map((characterData) => (
                 <MythicKeystonesContentLine
+                    id={characterData.id}
                     name={characterData.name}
+                    playerClass={characterData.class}
                     keystones={characterData.keystones}
                     chessOne={characterData.chessOne}
                     chessTwo={characterData.chessTwo}

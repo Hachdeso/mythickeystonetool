@@ -5,17 +5,23 @@ import { Keystone } from "../keystones/keystones.controller";
 import { CharacterServices } from "./characters.services";
 
 interface Character {
+    id: number;
     name: string;
     realmSlug: string;
+    class: string;
 }
 
 interface CharacterKeystone {
+    id: number;
     name: string;
+    class: string;
     keystones: Keystone[];
 }
 
 export interface CharacterData {
+    id: number;
     name: string;
+    class: string;
     keystones: Keystone[];
     chessOne: number;
     chessTwo: number;
@@ -24,20 +30,25 @@ export interface CharacterData {
 
 export class CharactersController {
     public async get(req: Request, res: Response) {
+        const charactersServices = new CharacterServices();
         const token = await api.getAccessToken();
         const blizzardResponse = await axios.get(
             "https://eu.api.blizzard.com/data/wow/guild/dalaran/lames-de-wrynn/roster?namespace=profile-eu&locale=en_EU&access_token=" +
                 token
         );
         const blizzardMembers: any[] = blizzardResponse.data.members;
-        const formatMembers: any[] = [];
+        const formatMembers: Character[] = [];
 
         blizzardMembers.forEach((blizzardMember) => {
             const character = blizzardMember.character;
             if (character.level === 60) {
                 formatMembers.push({
+                    id: character.id,
                     name: character.name,
                     realmSlug: character.realm.slug,
+                    class: charactersServices.getClassNameById(
+                        character.playable_class.id
+                    ),
                 });
             }
         });
@@ -60,7 +71,7 @@ export class CharactersController {
 
         const characters: Character[] = charactersResponse.data;
         console.log(characters);
-        const toReturn: any[] = [];
+        const toReturn: CharacterKeystone[] = [];
 
         characters.forEach((character) => {
             axios
@@ -72,7 +83,9 @@ export class CharactersController {
                 )
                 .then((response) => {
                     toReturn.push({
+                        id: character.id,
                         name: character.name,
+                        class: character.class,
                         keystones: response.data,
                     });
                     if (toReturn.length === characters.length) {
@@ -100,7 +113,9 @@ export class CharactersController {
                 characterKeystones.keystones
             );
             toReturn.push({
+                id: characterKeystones.id,
                 name: characterKeystones.name,
+                class: characterKeystones.class,
                 keystones: orderedKeystones,
                 chessOne: characterServices.getChessOne(orderedKeystones),
                 chessTwo: characterServices.getChessTwo(orderedKeystones),

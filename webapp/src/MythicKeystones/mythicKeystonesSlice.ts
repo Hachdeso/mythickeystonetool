@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CharacterData {
+    id: number;
     name: string;
+    class: string;
     keystones: Keystone[];
     chessOne: number;
     chessTwo: number;
