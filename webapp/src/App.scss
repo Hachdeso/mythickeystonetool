@@ -1,6 +1,8 @@
+@import "src/constant.scss";
+
 html,
 body {
-    background-color: rgb(54, 54, 54);
+    background-color: $backgroundColor;
     color: rgb(201, 201, 201);
     margin: 0;
     padding: 0;
@@ -9,7 +11,8 @@ body {
 .App {
     display: flex;
     justify-content: center;
-    background-color: rgb(54, 54, 54);
+    background-color: rgb(43, 42, 42);
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -17,11 +20,11 @@ h1 {
 }
 
 .deathKnight {
-    color: #c41e3a;
+    color: #ff4262;
 }
 
 .demonHunter {
-    color: #a330c9;
+    color: #d252fd;
 }
 
 .druid {
@@ -53,11 +56,11 @@ h1 {
 }
 
 .shaman {
-    color: #0070dd;
+    color: #2f97ff;
 }
 
 .warlock {
-    color: #8788ee;
+    color: #acade7;
 }
 
 .warrior {
@@ -65,17 +68,21 @@ h1 {
 }
 
 .green {
+    font-weight: bold;
     color: rgb(80, 180, 80);
 }
 
 .blue {
-    color: rgb(69, 109, 241);
+    font-weight: bold;
+    color: rgb(122, 153, 255);
 }
 
 .violet {
-    color: rgb(153, 90, 189);
+    font-weight: bold;
+    color: rgb(204, 117, 255);
 }
 
 .orange {
+    font-weight: bold;
     color: orange;
 }
