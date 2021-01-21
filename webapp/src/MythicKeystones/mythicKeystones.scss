@@ -16,10 +16,38 @@
     &-title {
         font-weight: bold;
     }
+
+    &-item {
+        &:hover {
+            background-color: black;
+            cursor: pointer;
+        }
+    }
 }
 
 .mythickeystonescontent {
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    display: grid;
+    grid-template-columns: 600px 300px;
+    column-gap: 20px;
+}
+
+.mythickeystonesdetails {
+    border: 1px solid rgb(201, 201, 201);
+    height: fit-content;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .keystones {
+        margin-top: 10px;
+        .keystone {
+            margin-bottom: 5px;
+            display: grid;
+            grid-template-columns: 200px 30px;
+            .level {
+                text-align: right;
+            }
+        }
+    }
 }

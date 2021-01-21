@@ -1,5 +1,8 @@
 import React from "react";
-import { Keystone } from "./mythicKeystonesSlice";
+import { useDispatch } from "react-redux";
+import { Keystone } from "./mythicKeystonesDataSlice";
+import { setIdToDisplay } from "./mythicKeystonesDetailsSlice";
+import { MythicKeystonesServices } from "./mythicKeystonesServices";
 
 interface MythicKeystonesContentLineProps {
     id: number;
@@ -20,12 +23,24 @@ const MythicKeystonesContentLine: React.FC<MythicKeystonesContentLineProps> = ({
     chessTwo,
     chessThree,
 }) => {
+    const mythicKeystoneServices = new MythicKeystonesServices();
+    const dispatch = useDispatch();
     return (
-        <div className="mythickeystonescontentline" key={id}>
+        <div
+            className="mythickeystonescontentline mythickeystonescontentline-item"
+            onMouseEnter={() => dispatch(setIdToDisplay(id))}
+            onMouseLeave={() => dispatch(setIdToDisplay(0))}
+        >
             <span className={`name ${playerClass}`}>{name}</span>
-            <span>{chessOne ? chessOne : "0/1"}</span>
-            <span>{chessTwo ? chessTwo : keystones.length + "/4"}</span>
-            <span>{chessThree ? chessThree : keystones.length + "/10"}</span>
+            <span className={mythicKeystoneServices.getChessColor(chessOne)}>
+                {chessOne ? chessOne : "0/1"}
+            </span>
+            <span className={mythicKeystoneServices.getChessColor(chessTwo)}>
+                {chessTwo ? chessTwo : keystones.length + "/4"}
+            </span>
+            <span className={mythicKeystoneServices.getChessColor(chessThree)}>
+                {chessThree ? chessThree : keystones.length + "/10"}
+            </span>
         </div>
     );
 };

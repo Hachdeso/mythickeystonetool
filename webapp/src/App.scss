@@ -1,6 +1,15 @@
-* {
+html,
+body {
     background-color: rgb(54, 54, 54);
     color: rgb(201, 201, 201);
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(54, 54, 54);
 }
 
 h1 {
@@ -53,4 +62,20 @@ h1 {
 
 .warrior {
     color: #c69b6d;
+}
+
+.green {
+    color: rgb(80, 180, 80);
+}
+
+.blue {
+    color: rgb(69, 109, 241);
+}
+
+.violet {
+    color: rgb(153, 90, 189);
+}
+
+.orange {
+    color: orange;
 }

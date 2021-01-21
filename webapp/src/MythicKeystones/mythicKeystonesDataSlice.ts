@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface CharacterData {
+export interface CharacterData {
     id: number;
     name: string;
     class: string;
@@ -11,6 +11,7 @@ interface CharacterData {
 }
 
 export interface Keystone {
+    dungeon: string;
     level: number;
     timed: boolean;
 }
@@ -24,7 +25,7 @@ let initialState: InitialState = {
     hasFetch: false,
     charactersData: [],
 };
-const mythicKeystonesSlice = createSlice({
+const mythicKeystonesDataSlice = createSlice({
     name: "mythicKeystones",
     initialState,
     reducers: {
@@ -37,6 +38,6 @@ const mythicKeystonesSlice = createSlice({
     },
 });
 
-export const { addAll, setHasFetch } = mythicKeystonesSlice.actions;
+export const { addAll, setHasFetch } = mythicKeystonesDataSlice.actions;
 
-export default mythicKeystonesSlice.reducer;
+export default mythicKeystonesDataSlice.reducer;

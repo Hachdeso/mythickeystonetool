@@ -1,5 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import mythicKeystonesReducer from "./MythicKeystones/mythicKeystonesSlice";
+import mythicKeystonesReducer from "./MythicKeystones/mythicKeystonesReducer";
 
 const rootReducer = combineReducers({
     mythicKeystones: mythicKeystonesReducer,

@@ -4,6 +4,7 @@ import { api } from "../../blizzapi";
 import { KeystonesServices } from "./keystones.services";
 
 export interface Keystone {
+    dungeon: string;
     level: number;
     timed: boolean;
 }
@@ -36,13 +37,16 @@ export class KeystonesController {
 
         const blizzardRuns: any[] =
             blizzardResponse.data.current_period.best_runs;
-        const keystones: any[] = [];
+        const keystones: Keystone[] = [];
 
         blizzardRuns.forEach((blizzardRun) => {
             const timestamp = blizzardRun.completed_timestamp;
 
             if (keystonesServices.isInCurrentPeriod(timestamp)) {
                 keystones.push({
+                    dungeon: keystonesServices.getDungeonNameById(
+                        blizzardRun.dungeon.id
+                    ),
                     level: blizzardRun.keystone_level,
                     timed: blizzardRun.is_completed_within_time,
                 });
