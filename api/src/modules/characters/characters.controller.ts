@@ -69,7 +69,6 @@ export class CharactersController {
         if (!charactersResponse) return;
 
         const characters: Character[] = charactersResponse.data;
-        console.log(characters);
         const toReturn: CharacterKeystone[] = [];
 
         characters.forEach((character) => {
@@ -103,8 +102,6 @@ export class CharactersController {
 
         const charactersKeystones: CharacterKeystone[] =
             charactersKeystonesResponse.data;
-
-        console.log(charactersKeystones);
 
         const toReturn: CharacterData[] = [];
 
